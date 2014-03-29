@@ -9,8 +9,8 @@ if Meteor.isClient
       sort: [['created_at', 'desc']]
 
   Template.sidebar.events
-    'click .post': ->
-      null
+    'click .jam': ->
+      console.log "Clicked on #{this}"
 
   fetchJams = ->
     FB.api '/232990736786590/feed', (response) ->

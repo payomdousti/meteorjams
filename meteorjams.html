@@ -40,17 +40,19 @@
       {{> sidebar}}
     </div>
     <div id="player" class="span8" src="">
-      {{> player}}
     </div>
   </div>
 </template>
 
-<template name="sidebar"></template>
-<template name="player"></template>
+<template name="sidebar">
+  {{#each jams}}
+    {{> jam}}
+  {{/each}}
+</template>
 
 <template name="jam">
   <div class="row-fluid">
-    <div class="post span8 offset2">
+    <div class="jam span8 offset2">
 
       <div class="row-fluid">
         <div class="span2 pull-right">
@@ -67,8 +69,6 @@
         </div>
       </div>
     </div>
-
-    <p hidden class="source">{{source}}</p>
   </div>
 </template>
 
