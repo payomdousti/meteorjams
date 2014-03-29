@@ -10,7 +10,11 @@ if Meteor.isClient
 
   Template.sidebar.events
     'click .jam': ->
-      console.log "Clicked on #{this}"
+      console.log "Clicked on #{this.name}"
+      source = if this.source.match /player.soundcloud.com/ then this.link else this.source
+      console.log "Attemping to play #{source}"
+      $('#player').children().first().remove()
+      window.player = Popcorn.smart('#player', source)
 
   fetchJams = ->
     FB.api '/232990736786590/feed', (response) ->
