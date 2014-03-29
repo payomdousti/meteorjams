@@ -2,13 +2,19 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "facebook-sdk": {}
+      "facebook-sdk": {},
+      "scss": {}
     },
     "packages": {
       "facebook-sdk": {
         "git": "https://github.com/hugesuccess/facebook-sdk.git",
         "tag": "v0.0.31",
         "commit": "3fef3e76fc0dd06fea050a059552a34bf857a9be"
+      },
+      "scss": {
+        "git": "https://github.com/fourseven/meteor-scss.git",
+        "tag": "v0.8.4",
+        "commit": "11af0da643944d241fe7d173af76162c4b670dee"
       }
     }
   }

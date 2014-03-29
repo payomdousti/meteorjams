@@ -1,0 +1,33 @@
+body {
+  padding-top: 50px;
+}
+
+.post {
+	height: 100%;
+	border-bottom: 1px solid lightgray;
+	// border-left: 1px solid gray;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	&:hover { 
+			cursor: pointer; 
+			border-left: 1px solid lightgray;
+	}
+	
+	font-family: helvetica;
+	font-size: 8pt;
+	
+	p {
+		font-size: 8pt;
+	}
+}
+
+#player {
+	height: 520px;
+	margin-bottom: 20px;
+}
+
+#sidebar {
+	height: 520px;
+	overflow: auto;
+}
+

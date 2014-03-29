@@ -1,5 +1,6 @@
 {
   "packages": {
-    "facebook-sdk": {}
+    "facebook-sdk": {},
+    "scss": {}
   }
 }
