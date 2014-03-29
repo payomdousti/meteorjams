@@ -10,6 +10,13 @@ if Meteor.isClient
     'click .post': ->
       null
 
+  window.fbAsyncInit = ->
+    FB.init
+      appId      : '136929479838758' # App ID
+      status     : true # check login status
+      cookie     : true # enable cookies to allow the server to access the session
+      xfbml      : true # parse XFBML
+
 if Meteor.isServer
   Meteor.startup ->
     # code to run on server at startup
