@@ -1,7 +1,15 @@
 {
   "meteor": {},
   "dependencies": {
-    "basePackages": {},
-    "packages": {}
+    "basePackages": {
+      "facebook-sdk": {}
+    },
+    "packages": {
+      "facebook-sdk": {
+        "git": "https://github.com/hugesuccess/facebook-sdk.git",
+        "tag": "v0.0.31",
+        "commit": "3fef3e76fc0dd06fea050a059552a34bf857a9be"
+      }
+    }
   }
 }
