@@ -1,18 +1,26 @@
 Jams = new Meteor.Collection("jams")
 
 if Meteor.isClient
+  # make Jams object accessible from the browser console (for debugging)
+  window.Jams = Jams
+
   Template.sidebar.jams = ->
     Jams.find {},
-      sort:
-        created_at: -1
+      sort: [['created_at', 'desc']]
 
   Template.sidebar.events
     'click .post': ->
       null
 
-  fetchJams = (token) ->
-    FB.api '/232990736786590/', 'get', { access_token: token }, (response) ->
-      Jams.insert(response.data)
+  fetchJams = ->
+    FB.api '/232990736786590/feed', (response) ->
+      if response.data
+        response.data.forEach (post) ->
+          if post.source
+            # don't insert duplicates
+            Jams.insert(post) unless Jams.findOne(id: post.id)
+
+        console.log "Got #{Jams.find().count()} jams"
 
   window.fbAsyncInit = ->
     FB.init
@@ -20,21 +28,23 @@ if Meteor.isClient
       status: true # check login status
       xfbml:  true # parse XFBML
 
-    fetchJams('CAACEdEose0cBAGUsXRr7JhtNy9OZBh25FP7YzJtJByFeEevZCdxiOOXZCsEV69ZBiZA4nZAWw3mP2j2kzn4jZA29ZC7TkfDbUYnp254fcN9gUSMBvsUiQQeFpEmRD08wMUTCQWs0JC1aT4BK9pNLpwWWcWNzHvlAgtnsHNJjGTmCmeih2yyb6vQuD9Lo1ZBtkFerYiiIQZBM1wKAZDZD')
-    #FB.getLoginStatus (response) ->
+    # subscribe to changes in authentication status to get 
+    # notified when user authenticates with Facebook
     FB.Event.subscribe 'auth.authResponseChange', (response) ->
       if response.status == 'connected'
         # user is logged in and has authorized the app
         accessToken = response.authResponse.accessToken
-        fetchJams(accessToken)
+        console.log "Got FB access token"
+        fetchJams()
 
       else if response.status == 'not_authorized'
         # the user is logged in to Facebook, 
         # but has not authenticated the app
-        console.log('not authorized')
+        console.log "not authorized"
+
       else
         # the user isn't logged in to Facebook.
-        console.log('not logged in')
+        console.log "not logged in"
 
 if Meteor.isServer
   Meteor.startup ->
