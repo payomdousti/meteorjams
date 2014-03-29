@@ -1,6 +1,7 @@
 {
   "packages": {
     "facebook-sdk": {},
-    "scss": {}
+    "scss": {},
+    "popcorn": {}
   }
 }
