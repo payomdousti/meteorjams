@@ -13,6 +13,9 @@ Users.initUser = ->
       Users.update(user._id, $set: last_seen: Date.now())
       # fetch the user's picture
       updateProfilePic(user)
+      # save current user for updates
+      Player.current_user = user if Meteor.isClient
+
     else
       console.log "Error fetching user info"
 
