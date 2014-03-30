@@ -1,8 +1,10 @@
 Jams = new Meteor.Collection("jams")
+Users = new Meteor.Collection("users")
 
 if Meteor.isClient
   # make Jams object accessible from the browser console (for debugging)
   window.Jams = Jams
+  window.Users = Users
 
   Template.sidebar.jams = ->
     Jams.find {},
@@ -14,6 +16,9 @@ if Meteor.isClient
       source = if this.source.match /player.soundcloud.com/ then this.link else this.source
       console.log "Attemping to play #{source}"
       Player.spawnAndPlay(source)
+
+  Template.userlist.users = ->
+    Users.find {}
 
   fetchJams = ->
     FB.api '/232990736786590/feed', (response) ->
@@ -28,6 +33,28 @@ if Meteor.isClient
       else
         console.log "Error reading from Facebook API"
 
+  initUser = ->
+    FB.api '/me', (response) ->
+      if response
+        user = Users.findOne(id: response.id)
+        unless user
+          # filter what we store
+          user = _.pick(response, 'id', 'name', 'link')
+          user._id = Users.insert(user)
+
+        # update login timestamp
+        Users.update(user._id, $set: last_seen: Date.now())
+        # fetch the user's picture
+        updateProfilePic(user)
+      else
+        console.log "Error fetching user info"
+
+  updateProfilePic = (user) ->
+    FB.api '/me/picture', (response) ->
+      if response.data
+        Users.update(user._id, $set: picture: response.data.url)
+        console.log "Profile pic updated"
+
   window.fbAsyncInit = ->
     FB.init
       appId:  '1571904639700879' # App ID
@@ -41,6 +68,7 @@ if Meteor.isClient
         # user is logged in and has authorized the app
         accessToken = response.authResponse.accessToken
         console.log "Got FB access token"
+        initUser()
         fetchJams()
 
       else if response.status == 'not_authorized'
