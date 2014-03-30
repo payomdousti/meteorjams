@@ -4,7 +4,8 @@
     "basePackages": {
       "facebook-sdk": {},
       "scss": {},
-      "popcorn": {}
+      "popcorn": {},
+      "moment": {}
     },
     "packages": {
       "facebook-sdk": {
@@ -21,6 +22,11 @@
         "git": "https://github.com/santihbc/meteor-popcorn-js.git",
         "tag": "v0.1.0",
         "commit": "20c5e438f0d1634f7c2ca3b0f78ac0bf63cb2e7c"
+      },
+      "moment": {
+        "git": "https://github.com/acreeger/meteor-moment.git",
+        "tag": "v2.5.1",
+        "commit": "8c9bc5d3fc96705057737cb9743d555417f6e551"
       }
     }
   }

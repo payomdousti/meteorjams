@@ -2,6 +2,7 @@
   "packages": {
     "facebook-sdk": {},
     "scss": {},
-    "popcorn": {}
+    "popcorn": {},
+    "moment": {}
   }
 }
