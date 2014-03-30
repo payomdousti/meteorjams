@@ -20,6 +20,9 @@ if Meteor.isClient
   Template.user.now_playing = ->
     Jams.findOne(this.now_playing) || name: 'idle'
 
+  Template.user.last_seen = ->
+    moment(this.last_seen).fromNow()
+
   window.fbAsyncInit = ->
     FB.init
       appId:  '1571904639700879' # App ID
