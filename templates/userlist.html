@@ -1,0 +1,22 @@
+<template name="userlist">
+  {{#each users}}
+    {{> user}}
+  {{/each}}
+</template>
+
+<template name="user">
+  <div class="row-fluid">
+    <div class="jam span8 offset2">
+
+      <div class="row-fluid">
+        <div class="span2 pull-right">
+          <img src="{{picture}}" class="img-rounded">
+        </div>
+        <div class="span6 pull-left">
+          <strong class=name>{{name}}</strong>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</template>
