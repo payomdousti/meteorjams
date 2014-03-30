@@ -9,10 +9,10 @@ window.Player =
     @spawn(source)
 
     # Play the song when ready
-    @player.on('canplaythrough', @play)
+    @player.on('canplaythrough', => @play)
 
     # Queue up the next song
-    @player.on('ended', () -> spawnAndPlay(song_index + 1))
+    @player.on('ended', => spawnAndPlay(song_index + 1))
 
   kill: ->
     $(@element).children().first().remove()
