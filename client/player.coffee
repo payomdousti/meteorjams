@@ -16,13 +16,13 @@ window.Player =
 
   kill: ->
     $(@element).children().first().remove()
-    Users.update(@current_user._id, $set: now_playing: null)
+    Users.updateNowPlaying(@current_user, null)
 
   spawn: (jam) ->
     source = if jam.source.match /player.soundcloud.com/ then jam.link else jam.source
     console.log "Attemping to play #{source}"
     @player = Popcorn.smart(@element, source)
-    Users.update(@current_user._id, $set: now_playing: jam._id)
+    Users.updateNowPlaying(@current_user, jam)
 
   play: ->
     @player.play()
