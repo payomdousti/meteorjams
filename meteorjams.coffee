@@ -11,13 +11,14 @@ if Meteor.isClient
   Template.sidebar.events
     'click .jam': ->
       console.log "Clicked on #{this.name}"
-      source = if this.source.match /player.soundcloud.com/ then this.link else this.source
-      console.log "Attemping to play #{source}"
-      Player.spawnAndPlay(source)
+      Player.spawnAndPlay(this)
 
   Template.userlist.users = ->
     Users.find {},
       sort: [['last_seen', 'desc']]
+
+  Template.user.now_playing = ->
+    Jams.findOne(this.now_playing) || name: 'idle'
 
   window.fbAsyncInit = ->
     FB.init

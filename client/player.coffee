@@ -1,12 +1,12 @@
 window.Player =
   element: "#player"
 
-  spawnAndPlay: (source) ->
+  spawnAndPlay: (jam) ->
     # Kill the current player
     @kill()
 
     # Create a new media player node with the new song
-    @spawn(source)
+    @spawn(jam)
 
     # Play the song when ready
     @player.on('canplaythrough', => @play)
@@ -16,11 +16,13 @@ window.Player =
 
   kill: ->
     $(@element).children().first().remove()
-    Users.update(@current_user._id, $set: now_playing: 'idle')
+    Users.update(@current_user._id, $set: now_playing: null)
 
-  spawn: (source) ->
+  spawn: (jam) ->
+    source = if jam.source.match /player.soundcloud.com/ then jam.link else jam.source
+    console.log "Attemping to play #{source}"
     @player = Popcorn.smart(@element, source)
-    Users.update(@current_user._id, $set: now_playing: source)
+    Users.update(@current_user._id, $set: now_playing: jam._id)
 
   play: ->
     @player.play()
