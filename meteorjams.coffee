@@ -13,18 +13,20 @@ if Meteor.isClient
       console.log "Clicked on #{this.name}"
       source = if this.source.match /player.soundcloud.com/ then this.link else this.source
       console.log "Attemping to play #{source}"
-      $('#player').children().first().remove()
-      window.player = Popcorn.smart('#player', source)
+      Player.spawnAndPlay(source)
 
   fetchJams = ->
     FB.api '/232990736786590/feed', (response) ->
       if response.data
         response.data.forEach (post) ->
-          if post.source
+          # only support Facebook and Youtube for now
+          if post.source and post.source.match /youtube.com|soundcloud.com/
             # don't insert duplicates
             Jams.insert(post) unless Jams.findOne(id: post.id)
 
         console.log "Got #{Jams.find().count()} jams"
+      else
+        console.log "Error reading from Facebook API"
 
   window.fbAsyncInit = ->
     FB.init

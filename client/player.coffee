@@ -1,26 +1,24 @@
 window.Player =
-  spawnAndPlay: (song_index) ->
-    # Check for valid song index
-    if song_index >= 0 && song_index < window.jams.models.length
+  element: "#player"
 
-      # Kill the current media player node
-      killMediaPlayer()
+  spawnAndPlay: (source) ->
+    # Kill the current player
+    @kill()
 
-      # Create a new media player node with the new song
-      song = window.jams.models[song_index]
-      spawnPlayer(song.attributes.source)
+    # Create a new media player node with the new song
+    @spawn(source)
 
-      # Play the song when ready
-      window.player.on( 'canplaythrough', playMedia )
+    # Play the song when ready
+    @player.on('canplaythrough', @play)
 
-      # Queue up the next song
-      window.player.on( 'ended', () -> spawnAndPlay( song_index + 1 ) )
+    # Queue up the next song
+    @player.on('ended', () -> spawnAndPlay(song_index + 1))
 
-    killMediaPlayer: ->
-      $("#player").children().first().remove()
+  kill: ->
+    $(@element).children().first().remove()
 
-    spawnPlayer: (song_source) ->
-      window.player = Popcorn.smart( "#player", song_source )
+  spawn: (source) ->
+    @player = Popcorn.smart(@element, source)
 
-    playMedia: ->
-      window.player.play()
+  play: ->
+    @player.play()
