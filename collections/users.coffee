@@ -10,8 +10,8 @@ _.extend Users,
           user = _.pick(response, 'id', 'name', 'link')
           user._id = Users.insert(user)
 
-        # update login timestamp
-        Users.update(user._id, $set: last_seen: Date.now())
+        # update login timestamp & reset now playing
+        Users.updateNowPlaying(user, null)
         # fetch the user's picture
         updateProfilePic(user)
         # save current user for updates
@@ -29,5 +29,5 @@ _.extend Users,
   updateNowPlaying: (user, jam) ->
     Users.update(user._id,
       $set:
-        now_playing: _.result(jam, '_id')
+        now_playing: _.result(jam, '_id') || null
         last_seen: Date.now())
