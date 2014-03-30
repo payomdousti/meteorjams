@@ -16,7 +16,8 @@ if Meteor.isClient
       Player.spawnAndPlay(source)
 
   Template.userlist.users = ->
-    Users.find {}
+    Users.find {},
+      sort: [['last_seen', 'desc']]
 
   window.fbAsyncInit = ->
     FB.init
