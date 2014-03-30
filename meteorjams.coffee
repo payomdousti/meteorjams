@@ -13,15 +13,26 @@ if Meteor.isClient
       console.log "Clicked on #{this.name}"
       Player.spawnAndPlay(this)
 
-  Template.userlist.users = ->
-    Users.find {},
-      sort: [['last_seen', 'desc']]
+  last_seen = new Deps.Dependency
+  last_seen_interval = null
+
+  Template.user.last_seen = ->
+    last_seen.depend()
+    moment(this.last_seen).fromNow()
 
   Template.user.now_playing = ->
     Jams.findOne(this.now_playing) || name: 'idle'
 
-  Template.user.last_seen = ->
-    moment(this.last_seen).fromNow()
+  Template.userlist.created = ->
+    # refresh every minute
+    last_seen_interval = Meteor.setInterval((-> last_seen.changed()), 60000)
+
+  Template.userlist.destroyed = ->
+    Meteor.clearInterval(last_seen_interval)
+
+  Template.userlist.users = ->
+    Users.find {},
+      sort: [['last_seen', 'desc']]
 
   window.fbAsyncInit = ->
     FB.init
