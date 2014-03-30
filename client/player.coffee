@@ -16,9 +16,11 @@ window.Player =
 
   kill: ->
     $(@element).children().first().remove()
+    Users.update(@current_user._id, $set: now_playing: 'idle')
 
   spawn: (source) ->
     @player = Popcorn.smart(@element, source)
+    Users.update(@current_user._id, $set: now_playing: source)
 
   play: ->
     @player.play()
