@@ -31,6 +31,16 @@ if Meteor.isClient
     'playing' if Player.current_user and
       Player.current_user.now_playing == this._id
 
+  Template.jam.source_icon = ->
+    match = this.source.match /youtube|soundcloud/
+    match[0] + '.png' if match
+
+  Template.jam.rendered = ->
+    $('.jam').popover
+      title:   -> $($(this).data('title'),   this).html()
+      content: -> $($(this).data('content'), this).html()
+      html: true
+
   Template.user.last_seen = ->
     last_seen.depend()
     moment(this.last_seen).fromNow()

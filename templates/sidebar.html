@@ -6,7 +6,7 @@
 
 <template name="jam">
   <div class="row-fluid">
-    <div class="jam {{is_playing}} span12">
+    <div class="jam {{is_playing}} span12" data-trigger="hover" data-title=".popover .title" data-content=".popover .content">
 
       <div class="row-fluid">
         <div class="span10">
@@ -24,6 +24,20 @@
       <div class="row-fluid">
         <div class="span4 offset8">
           <p class="name text-right">{{from.name}}</p>
+        </div>
+      </div>
+
+      <div class="popover hidden">
+        <div class="title">
+          <strong>{{name}}</strong>
+          <img class="pull-right" src="{{source_icon}}" width="20" height="20">
+        </div>
+        <div class="content">
+          <p>{{message}}</p>
+          <div class="text-center">
+            <img src="{{picture}}">
+          </div>
+          <p>{{description}}</p>
         </div>
       </div>
 
