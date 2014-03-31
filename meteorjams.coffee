@@ -25,13 +25,14 @@ if Meteor.isClient
 
   Template.userlist.created = ->
     # refresh every minute
-    last_seen_interval = Meteor.setInterval((-> last_seen.changed()), 60000)
+    last_seen_interval = Meteor.setInterval((-> last_seen.changed()), 60*1000)
 
   Template.userlist.destroyed = ->
     Meteor.clearInterval(last_seen_interval)
 
   Template.userlist.users = ->
-    Users.find {},
+    last_seen.depend()
+    Users.find {last_seen: $gt: Date.now() - 5*60*1000},
       sort: [['last_seen', 'desc']]
 
   window.fbAsyncInit = ->
