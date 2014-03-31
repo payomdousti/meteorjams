@@ -4,9 +4,17 @@ if Meteor.isClient
   window.Jams = share.Jams
   window.Users = share.Users
 
+  #
+  # Dependencies
+  #
+
   last_seen = new Deps.Dependency
   now_playing = new Deps.Dependency
   last_seen_interval = null
+
+  # 
+  # Hooking up templates
+  #
 
   Template.sidebar.jams = ->
     Jams.find {},
@@ -41,6 +49,10 @@ if Meteor.isClient
     last_seen.depend()
     Users.find {last_seen: $gt: Date.now() - 5*60*1000},
       sort: [['last_seen', 'desc']]
+
+  #
+  # FB API setup
+  #
 
   window.fbAsyncInit = ->
     FB.init
