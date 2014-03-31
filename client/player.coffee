@@ -8,6 +8,7 @@ window.Player =
     # Create a new media player node with the new song
     @spawn(jam)
 
+    @player.on('loadstart', => @now_playing('buffering'))
     @player.on('playing', => @now_playing(jam))
     @player.on('pause',   => @now_playing('paused'))
     @player.on('ended',   => @now_playing(null))
