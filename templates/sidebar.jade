@@ -1,10 +1,12 @@
 template(name="sidebar")
   each jams
     +jam
+  else
+    div.jam loading jams...
 
 template(name="jam")
   .row-fluid
-    div(class="jam {{is_playing}} span12" data-trigger="hover" data-title=".popover .title" data-content=".popover .content")
+    div(class="jam {{is_playing}} span12")
 
       .row-fluid
         .span10

@@ -1,14 +1,20 @@
 template(name="userlist")
   each users
     +user
+  else
+    div.user no one online :(
 
 template(name="user")
   .row-fluid
-    .user.span12
+    .user.span12(data-placement="left")
       .row-fluid
         .span9
-          strong(class="name") {{name}}
-          p(class="last_seen") online: {{last_seen}}
-          p(class="now_playing") playing: {{now_playing.name}}
+          strong.name {{name}}
+          p.last_seen online: {{last_seen}}
         .span2.offset1.pull-right
           img(src="{{picture}}" class="img-rounded")
+
+      .popover.hidden
+        .title
+        .content
+          p.now_playing playing: {{now_playing.name}}

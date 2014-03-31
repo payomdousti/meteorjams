@@ -35,10 +35,12 @@ if Meteor.isClient
     match = this.source.match /youtube|soundcloud/
     match[0] + '.png' if match
 
-  Template.jam.rendered = ->
-    $('.jam').popover
-      title:   -> $($(this).data('title'),   this).html()
-      content: -> $($(this).data('content'), this).html()
+  Template.jam.rendered = Template.user.rendered = ->
+    $(this.firstNode.firstChild).popover
+      trigger: 'hover'
+      # use popup content from hidden div
+      title:   -> $('.popover .title',   this).html()
+      content: -> $('.popover .content', this).html()
       html: true
 
   Template.user.last_seen = ->
@@ -57,6 +59,7 @@ if Meteor.isClient
 
   Template.userlist.users = ->
     last_seen.depend()
+    # show users online within the last 5 minutes
     Users.find {last_seen: $gt: Date.now() - 5*60*1000},
       sort: [['last_seen', 'desc']]
 
