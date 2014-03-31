@@ -57,7 +57,11 @@ body {
 
 }
 
-.popover-title, .popover-content {
-    font-size: 10pt;
+.popover {
+    z-index: 1040;
+
+    .popover-title, .popover-content {
+        font-size: 10pt;
+    }
 }
 
