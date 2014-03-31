@@ -18,7 +18,7 @@ if Meteor.isClient
 
   Template.sidebar.jams = ->
     Jams.find {},
-      sort: [['created_at', 'desc']]
+      sort: [['created_time', 'desc']]
 
   Template.sidebar.events
     'click .jam': ->
