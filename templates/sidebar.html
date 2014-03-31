@@ -6,22 +6,23 @@
 
 <template name="jam">
   <div class="row-fluid">
-    <div class="jam span8 offset2">
+    <div class="jam span12">
 
       <div class="row-fluid">
         <div class="span2 pull-right">
           <img src="{{picture}}" class="img-rounded">
         </div>
         <div class="span6 pull-left">
-          <strong class=name>{{name}}</strong>
+          <strong class="name">{{name}}</strong>
         </div>
       </div>
 
       <div class="row-fluid">
         <div class="span6 offset2 pull-right">
-          <p class=name>{{user.name}}</p>
+          <p class="name text-right">{{from.name}}</p>
         </div>
       </div>
+
     </div>
   </div>
 </template>

@@ -1,33 +1,51 @@
-body {
-  padding-top: 50px;
+html, body {
+    height: 100%;
 }
 
-.jam {
-	height: 100%;
-	border-bottom: 1px solid lightgray;
-	// border-left: 1px solid gray;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	&:hover { 
-			cursor: pointer; 
-			border-left: 1px solid lightgray;
-	}
-	
-	font-family: helvetica;
-	font-size: 8pt;
-	
-	p {
-		font-size: 8pt;
-	}
+body {
+    padding-top: 60px;
+}
+
+.jam, .user {
+    min-height: 65px;
+    padding: 8px 8px;
+    border-bottom: 1px solid lightgray;
+    font-size: 8pt;
+    line-height: 12pt;
+
+    &:hover { 
+        cursor: pointer; 
+        background: #fafafa;
+    }
+
+    .row-fluid [class*="span"] {
+        min-height: 14pt;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    p.name {
+       margin-top: 5px;
+    }
 }
 
 #player {
-	height: 520px;
+	height: 100%;
 	margin-bottom: 20px;
 }
 
-#sidebar {
-	height: 520px;
+#sidebar, #userlist {
+	height: 100%;
 	overflow: auto;
+    margin-bottom: 20px;
+    border: 1px solid lightgray;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    
+    & > .row-fluid {
+        background-color: #f2f2f2;
+    }
 }
 
