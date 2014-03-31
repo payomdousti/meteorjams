@@ -4,6 +4,10 @@ if Meteor.isClient
   window.Jams = share.Jams
   window.Users = share.Users
 
+  last_seen = new Deps.Dependency
+  now_playing = new Deps.Dependency
+  last_seen_interval = null
+
   Template.sidebar.jams = ->
     Jams.find {},
       sort: [['created_at', 'desc']]
@@ -12,9 +16,12 @@ if Meteor.isClient
     'click .jam': ->
       console.log "Clicked on #{this.name}"
       Player.spawnAndPlay(this)
+      now_playing.changed()
 
-  last_seen = new Deps.Dependency
-  last_seen_interval = null
+  Template.jam.is_playing = ->
+    now_playing.depend()
+    'playing' if Player.current_user and
+      Player.current_user.now_playing == this._id
 
   Template.user.last_seen = ->
     last_seen.depend()
