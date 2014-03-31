@@ -46,7 +46,7 @@ if Meteor.isClient
     moment(this.last_seen).fromNow()
 
   Template.user.now_playing = ->
-    Jams.findOne(this.now_playing) || name: 'idle'
+    Jams.findOne(this.now_playing) || name: (this.now_playing || 'idle')
 
   Template.userlist.created = ->
     # refresh every minute

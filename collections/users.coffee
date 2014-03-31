@@ -27,8 +27,9 @@ _.extend Users,
           console.log "Profile pic updated"
 
   updateNowPlaying: (user, jam) ->
-    user.now_playing = _.result(jam, '_id') || null
-    Users.update(user._id,
-      $set:
-        now_playing: user.now_playing
-        last_seen: Date.now())
+    if _.isObject(user)
+      user.now_playing = _.result(jam, '_id') || jam
+      Users.update(user._id,
+        $set:
+          now_playing: user.now_playing
+          last_seen: Date.now())
