@@ -18,6 +18,10 @@ body {
         background: #fafafa;
     }
 
+    &.playing {
+        background: #fafafa;
+    }
+
     .row-fluid [class*="span"] {
         min-height: 14pt;
     }
