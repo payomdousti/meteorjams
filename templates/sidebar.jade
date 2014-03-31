@@ -1,0 +1,30 @@
+template(name="sidebar")
+  each jams
+    +jam
+
+template(name="jam")
+  .row-fluid
+    div(class="jam {{is_playing}} span12" data-trigger="hover" data-title=".popover .title" data-content=".popover .content")
+
+      .row-fluid
+        .span10
+          if is_playing
+            i class("icon-play")
+          strong(class="name") {{name}}
+          .description {{message}}
+        .span2.pull-right
+          img.img-rounded(src="{{picture}}")
+
+      .row-fluid
+        .span4.offset8
+          p.name.text-right {{from.name}}
+
+      .popover.hidden
+        .title
+          strong {{name}}
+          img.pull-right(src="{{source_icon}}" width="20" height="20")
+        .content
+          p {{message}}
+          .text-center
+            img(src="{{picture}}")
+          p {{description}}

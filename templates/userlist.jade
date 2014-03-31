@@ -1,0 +1,14 @@
+template(name="userlist")
+  each users
+    +user
+
+template(name="user")
+  .row-fluid
+    .user.span12
+      .row-fluid
+        .span9
+          strong(class="name") {{name}}
+          p(class="last_seen") online: {{last_seen}}
+          p(class="now_playing") playing: {{now_playing.name}}
+        .span2.offset1.pull-right
+          img(src="{{picture}}" class="img-rounded")
