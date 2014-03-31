@@ -2,6 +2,7 @@
   "packages": {
     "scss": {},
     "popcorn": {},
-    "moment": {}
+    "moment": {},
+    "jade": {}
   }
 }

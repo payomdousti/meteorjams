@@ -4,7 +4,8 @@
     "basePackages": {
       "scss": {},
       "popcorn": {},
-      "moment": {}
+      "moment": {},
+      "jade": {}
     },
     "packages": {
       "scss": {
@@ -21,6 +22,11 @@
         "git": "https://github.com/acreeger/meteor-moment.git",
         "tag": "v2.5.1",
         "commit": "8c9bc5d3fc96705057737cb9743d555417f6e551"
+      },
+      "jade": {
+        "git": "https://github.com/mquandalle/meteor-jade.git",
+        "tag": "v0.2.1",
+        "commit": "969fc3dd0adbb15304e3e13c3e27260398d89503"
       }
     }
   }
