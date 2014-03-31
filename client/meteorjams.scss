@@ -11,7 +11,7 @@ body {
     padding: 8px 8px;
     border-bottom: 1px solid lightgray;
     font-size: 8pt;
-    line-height: 12pt;
+    line-height: 1.5em;
 
     &:hover { 
         cursor: pointer; 
@@ -23,7 +23,13 @@ body {
     }
 
     .row-fluid [class*="span"] {
-        min-height: 14pt;
+        min-height: 1.5em;
+    }
+
+    .description {
+        max-height: 3em;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     p {
@@ -47,9 +53,6 @@ body {
     border: 1px solid lightgray;
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
     border-radius: 3px;
-    
-    & > .row-fluid {
-        background-color: #f2f2f2;
-    }
+    background-color: #f2f2f2;
 }
 
