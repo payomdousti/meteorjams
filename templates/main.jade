@@ -1,0 +1,28 @@
+head
+  meta(charset="utf-8")
+  meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+  meta(name="viewport" content="width=device-width, initial-scale=1.0")
+  title MeteorJams
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script><![endif]-->
+
+body
+  .navbar.navbar-fixed-top
+    .navbar-inner
+      .container-fluid
+        .brand hot jams
+        .fb-login-button.pull-right(data-scope="user_groups" data-show-faces="false" data-size="large" data-max-rows="1" data-auto-logout-link="true" style="margin-top:7px")
+
+  .container-fluid
+    +main
+    footer
+
+template(name="main")
+  .row-fluid
+    #sidebar.span3
+      +sidebar
+    #player.span7
+    #userlist.span2
+      +userlist
+
