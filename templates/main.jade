@@ -22,12 +22,14 @@ template(name="main")
   .row-fluid
     #sidebar.span3
       +sidebar
-    #player.span7
-      .text-center
-        h1 welcome to hot jams!
-        h3 &Leftarrow; pick your poison over there
-        h3 see who's online over here &Rightarrow;
-        img(src="hotjam.jpg")
+    #content.span7
+      #player
+        .text-center
+          h1 welcome to hot jams!
+          h3 &Leftarrow; pick your poison over there
+          h3 see who's online over here &Rightarrow;
+          img(src="hotjam.jpg")
+      #comments
     #userlist.span2
       +userlist
 
