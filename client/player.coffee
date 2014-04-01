@@ -1,5 +1,10 @@
 window.Player =
   element: "#player"
+  iframe_defaults:
+    frameborder: 'no'
+    scrolling: 'no'
+    width: '100%'
+    height: '400'
 
   spawnAndPlay: (jam) ->
     # Kill the current player
@@ -22,13 +27,8 @@ window.Player =
 
   spawn: (jam) ->
     console.log "Attemping to play #{jam.source}"
-    @player = $('<iframe>').attr(
-      frameborder: 'no'
-      scrolling: 'no'
-      width: '100%'
-      height: '400'
-      src: jam.source
-    ).appendTo($(@element))
+    iframe_attrs = _.extend({}, @iframe_defaults, src: jam.source)
+    @player = $('<iframe>').attr(iframe_attrs).appendTo( $(@element) )
     @now_playing(jam)
 
   play: ->
