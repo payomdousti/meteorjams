@@ -21,9 +21,14 @@ window.Player =
     @now_playing(null)
 
   spawn: (jam) ->
-    source = if jam.source.match /player.soundcloud.com/ then jam.link else jam.source
-    console.log "Attemping to play #{source}"
-    @player = Popcorn.smart(@element, source)
+    console.log "Attemping to play #{jam.source}"
+    @player = $('<iframe>').attr(
+      frameborder: 'no'
+      scrolling: 'no'
+      width: '100%'
+      height: '400'
+      src: jam.source
+    ).appendTo($(@element))
     @now_playing(jam)
 
   play: ->
@@ -31,3 +36,4 @@ window.Player =
 
   now_playing: (jam_or_string) ->
     Users.updateNowPlaying(@current_user, jam_or_string)
+
