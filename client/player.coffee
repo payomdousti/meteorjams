@@ -22,13 +22,17 @@ window.Player =
     @player.on('canplaythrough', => @play)
 
   kill: ->
+    # remove iframe from DOM
     $(@element).children().first().remove()
     @now_playing(null)
 
   spawn: (jam) ->
     console.log "Attemping to play #{jam.source}"
+    # use default iframe attributes and add source
     iframe_attrs = _.extend({}, @iframe_defaults, src: jam.source)
+    # insert new iframe into player div
     @player = $('<iframe>').attr(iframe_attrs).appendTo( $(@element) )
+    # update now playing
     @now_playing(jam)
 
   play: ->
