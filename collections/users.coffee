@@ -26,6 +26,11 @@ _.extend Users,
           Users.update(user._id, $set: picture: response.data.url)
           console.log "Profile pic updated"
 
+  dedupe: ->
+    Users.find().forEach (user) ->
+      while Users.find(id: user.id).count() > 1
+        Users.remove(Users.findOne(id: user.id)._id)
+
   updateNowPlaying: (user, jam) ->
     if _.isObject(user)
       user.now_playing = _.result(jam, '_id') || jam

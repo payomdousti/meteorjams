@@ -15,6 +15,11 @@ _.extend Jams,
       else
         console.log "Error reading from Facebook API"
 
+  dedupe: ->
+    Jams.find().forEach (jam) ->
+      while Jams.find(id: jam.id).count() > 1
+        Jams.remove(Jams.findOne(id: jam.id)._id)
+
   fetchComments: (jam, callback) ->
     if 'id' of jam
       FB.api "/#{jam.id}/comments", (response) ->
