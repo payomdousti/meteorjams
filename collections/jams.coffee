@@ -11,6 +11,10 @@ _.extend Jams,
             if post.source and post.source.match /youtube.com|soundcloud.com/
               Jams.insert(post)
 
+        # call dedupe here to make sure we don't have duplicates
+        # this is sorta hacky, but it'll have TODO until I figure 
+        # out why this keeps happening
+        Jams.dedupe()
         console.log "Got #{Jams.find().count()} jams"
       else
         console.log "Error reading from Facebook API"
