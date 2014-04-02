@@ -4,7 +4,8 @@
     "basePackages": {
       "scss": {},
       "moment": {},
-      "jade": {}
+      "jade": {},
+      "uri-js": {}
     },
     "packages": {
       "scss": {
@@ -21,6 +22,11 @@
         "git": "https://github.com/mquandalle/meteor-jade.git",
         "tag": "v0.2.1",
         "commit": "969fc3dd0adbb15304e3e13c3e27260398d89503"
+      },
+      "uri-js": {
+        "git": "https://github.com/olragon/meteor-uri-js.git",
+        "tag": "v1.10.2",
+        "commit": "202c0c02fc61d5232cded188ef5c32b40d7fbca5"
       }
     }
   }

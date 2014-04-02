@@ -2,6 +2,7 @@
   "packages": {
     "scss": {},
     "moment": {},
-    "jade": {}
+    "jade": {},
+    "uri-js": {}
   }
 }
