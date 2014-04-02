@@ -27,9 +27,14 @@ window.Player =
     @now_playing(null)
 
   spawn: (jam) ->
-    console.log "Attemping to play #{jam.source}"
+    if jam.source.match /soundcloud.com/
+      player = new @SoundCloud(jam)
+    else if jam.source.match /youtube.com/
+      player = new @YouTube(jam)
+
+    console.log "Attemping to play #{player.source}"
     # use default iframe attributes and add source
-    iframe_attrs = _.extend({}, @iframe_defaults, src: jam.source)
+    iframe_attrs = _.extend({}, @iframe_defaults, src: player.source)
     # insert new iframe into player div
     @player = $('<iframe>').attr(iframe_attrs).appendTo( $(@element) )
     # update now playing
